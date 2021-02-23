@@ -1,0 +1,73 @@
+- v jave se nepouziva override kdyz prepisuju toString metodu??
+- volani pretizeneho konstruktoru java
+public Chair(int number, Boolean reserved)
+    {
+    	this(number);
+        this.reserved = reserved;
+    }
+- volani pretizeneho konstruktoru c sharp
+
+public Chair(int number, bool reserved) : this(number)
+        {
+            this.reserved = reserved;
+        }
+- list java
+musim naimportovat tyhle dve veci hned pod package
+import java.util.ArrayList;
+import java.util.List;
+
+- automaticke gettery a settery u listu v csharp jsou generovane jako internal, nevim proc
+ale java nechce internal, tak jsem tam daL PUBLIC
+
+- kdyz vytvarim novy list tak je asi potreba vytvorit arraylist v jave 
+List<IGetWeight> nakladLetadla = new ArrayList<IGetWeight>();
+- netody list jsou v jave malym treba .add()
+- GetType().Name jsem nahradil getClass().getName() tak uvidime jestli to bude fungovat
+- dedeni konstruktoru pomoci :base v c sharp sem nahradil takto, tak snad to bude fungovat:
+v postate stejne jak u :this, jen base se nahradi super
+
+csharp:
+public EconomyWagon(int numberOfChairs):base(numberOfChairs)
+        {
+
+        }
+
+
+java:
+public EconomyWagon(int numberOfChairs)
+    {
+    	super(numberOfChairs);
+    } 
+- u dedeni toStringu taky base za super
+- dedeni z abstraktni tridy v jave je asi jine, asi vyzaduje implementaci vsech metod??
+- mozna to hazi chybu protoze jeste nemam vytvorenou tridu Train
+- jo bylo to tim, takye dedeni z abstraktni tridy je stejne jak v c sharp
+
+- .Count() u listu v c sharp nahrazuju .size()
+- u .toArray nutno pretypovat v jave, v csharp nemusim
+poleWagacu = (IWagon[]) wagons.toArray();
+- nechapu moc proc kdyz wagons mam deklarovane jako list typu IWagon, ale u prevodu na array asi musim to pole 
+ktere vytvarim taky pretypovat ... nevim .. asi jo ..
+- no s tim pretypovanim na typ pole je to asi tak, tu sem musel taky pretypovat na pole Chair,
+v csharp se nemuselo
+ poleKreselVeWagaci = (Chair[]) ((PersonalWagon)(thisWagonek)).GetSits().toArray();
+
+- to nutne pretypovani je mozna proto, ze pri vytvareni instance listu pouzivam arraylist
+ List<Bed> beds = new ArrayList<Bed>(numberOfBeds);
+- googlim insert items to ArrayList java
+bo mi to haze erorr toto
+var train1 = new Train(lok1,new ArrayList<IWagon>() {w1,w2,w3 } );
+v te chlupate zavorce mu neco vadi
+- nic sem nevygooglil seru na to, pridam tam itemy pomoci .add()
+
+//c sharp code
+        //var train1 = new Train(lok1,new ArrayList<IWagon>() {w1,w2,w3 } );
+        //nahradim timhle bo sem lama
+        List<IWagon> train1list = new ArrayList<IWagon>();
+        train1list.add(w1);
+        train1list.add(w2);
+        train1list.add(w3);
+        var train1 = new Train(lok1,train1list);
+        //nahradim timhle bo sem lama
+-
+- nefunguje rezervace a to stringy jsou marne ... upload a obed ... cus .. nekdy to snad spravim
