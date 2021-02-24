@@ -38,9 +38,9 @@ public abstract class PersonalWagon implements IWagon
 
     public void ConnectWagon(Train train)
     {
-        if (train.Wagons.Count() < 5)
+        if (train.wagons.size() < 5)
         {
-            train.Wagons.Add(this);
+            train.wagons.add(this);
         }
 
 
@@ -52,9 +52,9 @@ public abstract class PersonalWagon implements IWagon
 
     public void DisconnectWagon(Train train)
     {
-        if (train.Wagons.Contains(this))
+        if (train.wagons.contains(this))
         {
-            train.Wagons.Remove(this);
+            train.wagons.remove(this);
         }
     }
 
