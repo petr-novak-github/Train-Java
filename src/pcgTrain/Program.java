@@ -32,26 +32,32 @@ public class Program {
         //same fucking story
 
         List<IWagon> train2list = new ArrayList<IWagon>();
-        train1list.add(wx1);
-        train1list.add(wx2);
-        train1list.add(wx3);
-        train1list.add(wx4);
-        train1list.add(wx5);
+        train2list.add(wx1);
+        train2list.add(wx2);
+        train2list.add(wx3);
+        train2list.add(wx4);
+        train2list.add(wx5);
         
         var train2 = new Train(lok2,train2list);
         
         train2.ConnectWagon(new EconomyWagon(50));
-       // train2.ReserveChair(3,3);
+        train2.ReserveChair(3,3);
         //pokus o rezervovani v hoppru
-        //train1.ReserveChair(3,5);
+        train1.ReserveChair(3,5);
+       
+        
         //pokus o rezervovani jiz rezervovaneho sedadla
-        //train2.ReserveChair(3, 3);
-       // train2.ReserveChair(1, 79);
-      //  train1.ListReservedChairs();
+        train2.ReserveChair(3, 3);
+        train2.ReserveChair(3,6);
+        train2.ReserveChair(1, 79);
+        train2.ReserveChair(1, 78);
+        train2.ListReservedChairs();
         //train2.ListReservedChairs();
 
         System.out.println(  train1.toString() );
         System.out.println(  train2.toString() );
+        
+       // System.out.println(item.getClass().getName().substring(item.getClass().getName().indexOf(".")+1) +"- sazba danne:" + item.GetTax());
 	}
 
 }

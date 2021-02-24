@@ -71,3 +71,16 @@ v te chlupate zavorce mu neco vadi
         //nahradim timhle bo sem lama
 -
 - nefunguje rezervace a to stringy jsou marne ... upload a obed ... cus .. nekdy to snad spravim
+2021-02-24
+0834
+- jdu doladit veci, to stringy zobrazuji spatne, to uz sem resil v projektu tax - tak to zkusim pofarat
+- dale nefunguje rezervace listku, myslim si, ze je problem v listu, ktery tady vytvarim jako arraylist,
+coz sem vygooglil, ale ve skriptech je, ze mame pouzit linked list misto listu,
+asi bych si mel ujasnit c# list, arraylist, linkedlist a java list, arraylist a linkedlist, mam v tom zmatek
+-tak jdem do toho 
+1808 - tostringy opravene
+- ok tak s listem, araylistem, linkedlistem to az tak nebylo ... byl tam spis problem s pretypovavanim,
+no mozna to s tim souvisi, ale list pouzivam furt stejne
+- dale byl problem, ze c# asi inicializuje hodnotu bool sam .. no kazdopadne to hazelo chybu s null reference
+takze se pri vytvareni kresla s cislem v konstructoru muselo pridat nastaveni datove slozky reserved na false
+0736-nak ta rezervace funguje ukladam ...

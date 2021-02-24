@@ -46,9 +46,9 @@ public class Train
     }
 
     public void ConnectWagon(IWagon wagon) {
-        if (wagons.size()<5)
+        if (this.wagons.size()<5)
         {
-            wagons.add(wagon);
+            this.wagons.add(wagon);
         }
 
         else
@@ -67,9 +67,9 @@ public class Train
     public void ReserveChair(int cisloWagonu, int cisloSedadla) {
 
         int pocetWagacu = wagons.size();
-        IWagon[] poleWagacu = new IWagon[pocetWagacu];
-        poleWagacu = (IWagon[]) wagons.toArray();
-        IWagon thisWagonek = poleWagacu[cisloWagonu];
+        Object[] poleWagacu = new IWagon[pocetWagacu];
+        poleWagacu =  wagons.toArray();
+        IWagon thisWagonek = (IWagon) poleWagacu[cisloWagonu];
 
         if (thisWagonek instanceof PersonalWagon)
         {
@@ -79,9 +79,10 @@ public class Train
 
         if (poleWagacu[cisloWagonu] instanceof PersonalWagon & cisloWagonu<=pocetWagacu)
         {
-            Chair[] poleKreselVeWagaci = new Chair[pocetKreselVeWagaci];
-            poleKreselVeWagaci = (Chair[]) ((PersonalWagon)(thisWagonek)).GetSits().toArray();
-            if (poleKreselVeWagaci[cisloSedadla].GetReserved() == true)
+            Object[] poleKreselVeWagaci = new Chair[pocetKreselVeWagaci];
+            poleKreselVeWagaci = ((PersonalWagon)(thisWagonek)).GetSits().toArray();
+            Chair thisZidle = (Chair)poleKreselVeWagaci[cisloSedadla];
+            if (thisZidle.GetReserved() == true)
             {
                 System.out.println("Sedadlo uz je reserved.");
             }
@@ -90,13 +91,14 @@ public class Train
             if (((PersonalWagon)thisWagonek).GetNumberOfChairs() > cisloSedadla)
             {
                 
-                poleKreselVeWagaci[cisloSedadla].SetReserved(true); 
+            	thisZidle.SetReserved(true); 
+            	System.out.println("Sedadlo "+ cisloSedadla + " rezervovano ve vagonu " + cisloWagonu);
             }
         }
         }
         else
         {
-            System.out.println("Nelze reservovat ve vagonu typu " + poleWagacu[cisloWagonu].getClass().getName() );
+            System.out.println("Nelze reservovat ve vagonu typu " + poleWagacu[cisloWagonu].getClass().getName().substring(9) );
         }
         
 
@@ -104,25 +106,27 @@ public class Train
     public void ListReservedChairs() {
 
         int pocetWagacu = wagons.size();
-        IWagon[] poleWagacu = new IWagon[pocetWagacu];
-        poleWagacu =(IWagon[]) wagons.toArray();
+        Object[] poleWagacu = new IWagon[pocetWagacu];
+        poleWagacu = wagons.toArray();
         String ret2 = "Reserved seats: \n";
+        
    
         for (int i = 0; i < pocetWagacu; i++)
         {
-            
-        if (poleWagacu[i] instanceof PersonalWagon)
+        	IWagon thisWagonek = (IWagon) poleWagacu[i];   
+        if (thisWagonek instanceof PersonalWagon)
         {
-                PersonalWagon thisPersonalniWagac = (PersonalWagon)poleWagacu[i];
+                PersonalWagon thisPersonalniWagac = (PersonalWagon)thisWagonek;
                 int pocetKresell = thisPersonalniWagac.GetSits().size();
 
-                Chair[] poleKreselVeWagaci = new Chair[pocetKresell];
+                Object[] poleKreselVeWagaci = new Chair[pocetKresell];
                
-                poleKreselVeWagaci = (Chair[])thisPersonalniWagac.GetSits().toArray();
+                poleKreselVeWagaci = thisPersonalniWagac.GetSits().toArray();
                
                 for (int j = 0; j < poleKreselVeWagaci.length; j++)
                 {
-                    if (poleKreselVeWagaci[j].GetReserved() == true)
+                	Chair thisZidla = (Chair)poleKreselVeWagaci[j];
+                    if (thisZidla.GetReserved() == true)
                     {
                        
                         ret2 += i + ". wagon - " + j + ". sedadlo \n";
@@ -142,10 +146,10 @@ public class Train
     {
         String ret="";
         for (IWagon item : wagons)
-        // for(IGetWeight item : nakladLetadla)
+       
         {
             ret += item.toString() + "\n";
         }
-        return "Vlak s lokomotivou"+ locomotive.toString()+ "a s vagonama: \n"+ret ;
+        return "Vlak s lokomotivou"+ locomotive.toString()+ " a s vagonama: \n"+ret ;
     }
 }

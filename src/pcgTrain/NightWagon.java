@@ -31,6 +31,6 @@ public class NightWagon extends PersonalWagon
 
     public String toString()
     {
-        return super.toString() + " a ma"+ numberOfBeds + " posteli";
+        return super.toString() + " a ma "+ numberOfBeds + " posteli";
     }
 }

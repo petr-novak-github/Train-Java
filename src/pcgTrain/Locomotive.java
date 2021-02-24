@@ -36,8 +36,8 @@ public class Locomotive
         this.engine = engine;
     }
 
-    public String ToString()
+    public String toString()
     {
-        return " s ridicem " + driver.GetFirstName() +" "+ driver.GetLastName();
+        return " s ridicem " + this.driver.toString();
     }
 }

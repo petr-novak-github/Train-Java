@@ -44,6 +44,7 @@ public class Chair
     public Chair(int number)
     {
         this.number = number;
+        this.reserved=false;
     }
 
     public Chair(int number, Boolean reserved)

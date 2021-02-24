@@ -62,7 +62,7 @@ public abstract class PersonalWagon implements IWagon
     {
         this.SetNumberOfChairs(numberOfChairs);
 
-        this.sits = new ArrayList<Chair>(numberOfChairs);
+        this.sits = new ArrayList<Chair>();
 
         for (int i = 0; i < numberOfChairs; i++)
         {
@@ -75,6 +75,6 @@ public abstract class PersonalWagon implements IWagon
 
     public  String toString()
     {
-        return "--" + getClass().getName()+" s poctem sedadel"+ GetNumberOfChairs() ;
+        return "-- " + getClass().getName().substring(9)+" s poctem sedadel "+ GetNumberOfChairs() ;
     }
 }

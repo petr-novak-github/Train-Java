@@ -38,6 +38,6 @@ public class Person
 
     public  String toString()
     {
-        return " se jmenem: "+ firstName + " "+ lastName;
+        return " se jmenem: "+ GetFirstName() + " "+ GetLastName();
     }
 }

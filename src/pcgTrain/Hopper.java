@@ -38,6 +38,6 @@ class Hoper implements IWagon
 
     public String toString()
     {
-        return getClass().getName() + "a ma kapacitu nakladu "+ loadingCapacity;
+        return "-- " + getClass().getName().substring(9) + " a ma kapacitu nakladu "+ (int)loadingCapacity;
     }
 }
